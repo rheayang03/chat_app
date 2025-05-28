@@ -13,12 +13,14 @@ class ChatApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Chat App!',
-      theme: ThemeData(
-        primarySwatch: Colors.deepPurple,
-        useMaterial3: true,
-      ),
-      home: ChatPage(),
-    );
+        title: 'Chat App!',
+        theme: ThemeData(
+          primarySwatch: Colors.deepPurple,
+          useMaterial3: true,
+        ),
+        home: LoginPage(),
+        routes: {
+          '/chat': (context) => ChatPage(),
+        });
   }
 }
