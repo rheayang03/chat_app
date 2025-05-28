@@ -4,6 +4,7 @@ class CounterStateful extends StatefulWidget {
   Color buttonColor;
 
   CounterStateful({Key? key, required this.buttonColor}) : super(key: key);
+
   @override
   State<CounterStateful> createState() {
     State<CounterStateful> stateClassAssociatedWithThisWidget =
