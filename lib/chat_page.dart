@@ -3,7 +3,8 @@ import 'package:chat_app/chat_bubble.dart';
 import 'package:chat_app/chat_input.dart';
 
 class ChatPage extends StatelessWidget {
-  const ChatPage({Key? key}) : super(key: key);
+  final String userName;
+  const ChatPage({Key? key, required this.userName}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -12,7 +13,7 @@ class ChatPage extends StatelessWidget {
         backgroundColor: Colors.transparent,
         elevation: 0,
         centerTitle: true,
-        title: Text('Hii Rhea Mae!'),
+        title: Text('Hii $userName!'),
         actions: [
           IconButton(
               onPressed: () {
