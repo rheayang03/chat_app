@@ -7,7 +7,7 @@ class LoginPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(),
-      drawer: Drawer(),
+      drawer: const Drawer(),
       floatingActionButton: FloatingActionButton(
         onPressed: () {
           print('Button clicked');
@@ -16,7 +16,7 @@ class LoginPage extends StatelessWidget {
       // TODO: Add the text and image from the design
       body: Column(
         children: [
-          Text(
+          const Text(
             'Let\'s sign you in!',
             style: TextStyle(
               fontSize: 30,
@@ -25,7 +25,7 @@ class LoginPage extends StatelessWidget {
               letterSpacing: 0.5,
             ),
           ),
-          Text(
+          const Text(
             'Welcome back!\nYou\'ve been missed!',
             style: TextStyle(
               fontWeight: FontWeight.bold,
@@ -40,11 +40,11 @@ class LoginPage extends StatelessWidget {
           Container(
               height: 150,
               width: 150,
-              padding: EdgeInsets.all(10),
+              padding: const EdgeInsets.all(10),
               //child: FlutterLogo(),
-              margin: EdgeInsets.all(50),
+              margin: const EdgeInsets.all(50),
               decoration: BoxDecoration(
-                  image: DecorationImage(
+                  image: const DecorationImage(
                       fit: BoxFit.fitHeight,
                       image: NetworkImage(
                           'https://3009709.youcanlearnit.net/Alien_LIL_131338.png')),
