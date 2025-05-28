@@ -13,7 +13,45 @@ class LoginPage extends StatelessWidget {
           print('Button clicked');
         },
       ),
-      body: Text('Hello!'),
+      // TODO: Add the text and image from the design
+      body: Column(
+        children: [
+          Text(
+            'Let\'s sign you in!',
+            style: TextStyle(
+              fontSize: 30,
+              color: Colors.brown,
+              fontWeight: FontWeight.bold,
+              letterSpacing: 0.5,
+            ),
+          ),
+          Text(
+            'Welcome back!\nYou\'ve been missed!',
+            style: TextStyle(
+              fontWeight: FontWeight.bold,
+              fontSize: 20,
+              color: Colors.blueGrey,
+            ),
+          ),
+          Image.network(
+            'https://3009709.youcanlearnit.net/Alien_LIL_131338.png',
+            height: 200,
+          ),
+          Container(
+              height: 150,
+              width: 150,
+              padding: EdgeInsets.all(10),
+              //child: FlutterLogo(),
+              margin: EdgeInsets.all(50),
+              decoration: BoxDecoration(
+                  image: DecorationImage(
+                      fit: BoxFit.fitHeight,
+                      image: NetworkImage(
+                          'https://3009709.youcanlearnit.net/Alien_LIL_131338.png')),
+                  color: Colors.blue,
+                  borderRadius: BorderRadius.circular(24))),
+        ],
+      ),
     );
   }
 }
