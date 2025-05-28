@@ -50,7 +50,7 @@ class LoginPage extends StatelessWidget {
                   onPressed: () {
                     print('Pressed on the URL');
                   },
-                  child: Text('https://eltonprojects.com')),
+                  child: Text('https://rhea_yang_projects.com')),
             ],
           ),
         ),
