@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:chat_app/login_page.dart'; // Make sure this file exists
+import 'package:chat_app/login_page.dart';
+import 'package:chat_app/chat_page.dart'; // Make sure this file exists
 
 void main() {
   runApp(const ChatApp());
@@ -11,13 +12,13 @@ class ChatApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Chat App',
+      title: 'Chat App!',
       theme: ThemeData(
         primarySwatch: Colors.yellow,
         useMaterial3: true,
       ),
       home:
-          const LoginPage(), // Make sure LoginPage is a Stateless or Stateful widget
+          const ChatPage(), // Make sure LoginPage is a Stateless or Stateful widget
     );
   }
 }
