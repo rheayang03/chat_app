@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:chat_app/login_page.dart';
-import 'package:chat_app/chat_page.dart'; // Make sure this file exists
+import 'package:chat_app/chat_page.dart';
+import 'package:chat_app/counter_stateful_demo.dart';
 
 void main() {
   runApp(const ChatApp());
@@ -18,7 +19,7 @@ class ChatApp extends StatelessWidget {
         useMaterial3: true,
       ),
       home:
-          const ChatPage(), // Make sure LoginPage is a Stateless or Stateful widget
+          const CounterStateful(), // Make sure LoginPage is a Stateless or Stateful widget
     );
   }
 }
