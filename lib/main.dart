@@ -15,10 +15,10 @@ class ChatApp extends StatelessWidget {
     return MaterialApp(
       title: 'Chat App!',
       theme: ThemeData(
-        primarySwatch: Colors.yellow,
+        primarySwatch: Colors.deepPurple,
         useMaterial3: true,
       ),
-      home: CounterStateful(buttonColor: Colors.blue),
+      home: LoginPage(),
     );
   }
 }
