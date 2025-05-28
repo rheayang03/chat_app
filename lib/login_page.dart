@@ -46,11 +46,24 @@ class LoginPage extends StatelessWidget {
                     'Click Me',
                     style: TextStyle(fontSize: 30, fontWeight: FontWeight.w300),
                   )),
-              TextButton(
-                  onPressed: () {
-                    print('Pressed on the URL');
-                  },
-                  child: Text('https://rhea_yang_projects.com')),
+              InkWell(
+                splashColor: Colors.red,
+                onDoubleTap: () {
+                  print('Double Tapped');
+                },
+                onLongPress: () {
+                  print('Long Pressed');
+                },
+                onTap: () {
+                  print('Linked Clicked');
+                },
+                child: Column(
+                  children: [
+                    Text('Find us on'),
+                    Text('https://eltonprojects.com'),
+                  ],
+                ),
+              ),
             ],
           ),
         ),
