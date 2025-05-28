@@ -18,8 +18,7 @@ class ChatApp extends StatelessWidget {
         primarySwatch: Colors.yellow,
         useMaterial3: true,
       ),
-      home:
-          const CounterStateful(), // Make sure LoginPage is a Stateless or Stateful widget
+      home: CounterStateful(buttonColor: Colors.blue),
     );
   }
 }
