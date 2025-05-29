@@ -7,7 +7,6 @@ import 'package:chat_app/chat_input.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
-
 class ChatPage extends StatefulWidget {
    ChatPage({Key? key}) : super(key: key);
 
@@ -48,38 +47,19 @@ class _ChatPageState extends State<ChatPage> {
       setState(() {});
   }
   
-   Future<List<PixelfordImage>>
-   _getNetworkImages() async {
-    var endpointUrl = Uri.parse('https://picsum.photos/v2/list');
+   
 
-    final response = await http.get(endpointUrl);
-
-    if (response.statusCode == 200) {
-      final List<dynamic> decodeList = jsonDecode(response.body) as List;
-
-      final List<PixelfordImage> _imageList = decodeList.map((listItem) {
-        return PixelfordImage.fromJson(listItem);
-      }).toList();
-      print(_imageList[0].urlFullSize);
-      return _imageList;
-    } else {
-      throw Exception('API not successful!');
-    }
-  }
-
+   final ImageRepository _imageRepo = ImageRepository();
 
   @override
   void initState() {
     _loadInitialMessages();
-    _getNetworkImages();
 
     super.initState();
   }
 
   @override
   Widget build(BuildContext context) {
-
-    _getNetworkImages();
 
 
     final userName = ModalRoute.of(context)!.settings.arguments as String;
@@ -103,7 +83,7 @@ class _ChatPageState extends State<ChatPage> {
       body: Column(
         children: [
           FutureBuilder<List<PixelfordImage>>(
-              future: _getNetworkImages(),
+              future: _imageRepo.getNetworkImages(),
               builder: (BuildContext context,
                   AsyncSnapshot<List<PixelfordImage>> snapshot) {
                 if (snapshot.hasData)
