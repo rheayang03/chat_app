@@ -1,6 +1,8 @@
 import 'package:chat_app/models/chat_message_entity.dart';
 import 'package:flutter/material.dart';
+import 'package:chat_app/services/auth_service.dart';
 import 'package:chat_app/widgets/picker_body.dart';
+import 'package:provider/provider.dart';
 
 class ChatInput extends StatefulWidget {
   final Function(ChatMessageEntity) onSubmit;
@@ -23,7 +25,7 @@ final chatMessageController = TextEditingController();
       text: chatMessageController.text,
       id: '244',
       createdAt: DateTime.now().millisecondsSinceEpoch,
-      author: Author(username: 'Elton Bernil'),
+      author: Author(username: context.read<AuthService>().getUserName()),
       imageUrl: ''
     );
 
