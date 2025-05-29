@@ -9,6 +9,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:provider/provider.dart';
 
+
 class ChatPage extends StatefulWidget {
    ChatPage({Key? key}) : super(key: key);
 
@@ -75,8 +76,7 @@ class _ChatPageState extends State<ChatPage> {
               onPressed: () {
                 context.read<AuthService>().updateUserName("New Name!");
               },
-              icon: Icon(Icons.logout)),
-
+               icon: Icon(Icons.change_circle)),
         ],
       ),
 
