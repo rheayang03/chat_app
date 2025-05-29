@@ -1,5 +1,6 @@
 import 'dart:convert';
 import 'package:chat_app/models/image_model.dart';
+import 'package:chat_app/services/auth_service.dart';
 import 'package:http/http.dart' as http;
 import 'package:chat_app/models/chat_message_entity.dart';
 import 'package:chat_app/chat_bubble.dart';
@@ -7,7 +8,7 @@ import 'package:chat_app/chat_input.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
-lass ChatPage extends StatefulWidget {
+class ChatPage extends StatefulWidget {
    ChatPage({Key? key}) : super(key: key);
 
   @override
@@ -90,10 +91,11 @@ class _ChatPageState extends State<ChatPage> {
               itemBuilder: (context, index) {
 
               return ChatBubble(
-              
-                alignment: _messages[index].author.username == 'Elton Bernil'
-                    ?Alignment.centerRight
-                    : Alignment.centerLeft,
+                   alignment: _messages[index].author.username ==
+                                AuthService().getUserName()
+                            ? Alignment.centerRight
+                            : Alignment.centerLeft,
+                
                     
                 entity: _messages[index],);
             })),

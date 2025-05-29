@@ -1,5 +1,8 @@
- import 'package:chat_app/models/chat_message_entity.dart';
+import 'package:chat_app/models/chat_message_entity.dart';
 import 'package:flutter/material.dart';
+import '../services/auth_service.dart';
+
+
 
 class ChatBubble extends StatelessWidget {
 
@@ -15,8 +18,8 @@ class ChatBubble extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    bool isAuthor = entity.author.username == "Elton Bernil";
-    return Align(
+ bool isAuthor = entity.author.username == AuthService().getUserName();    
+ return Align(
       alignment: alignment,
       child: Container(
         constraints:
