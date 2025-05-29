@@ -3,6 +3,7 @@ import 'package:chat_app/chat_page.dart';
 import 'package:chat_app/textfield_styles.dart';
 import 'package:chat_app/login_text_field.dart';
 import 'package:chat_app/util/spaces.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class LoginPage extends StatelessWidget {
   LoginPage({Key? key}) : super(key: key);
@@ -27,6 +28,8 @@ class LoginPage extends StatelessWidget {
 
   final userNameController = TextEditingController();
   final passwordController = TextEditingController();
+
+  final _mainUrl = 'https://github.com/rheayang03/chat_app/commits/main/';
 
   @override
   Widget build(BuildContext context) {
@@ -104,14 +107,17 @@ class LoginPage extends StatelessWidget {
                       fontWeight: FontWeight.w300),
                 ),
               ),
-              GestureDetector(
-                onDoubleTap: () {
-                  print('Linked Clicked');
+               onTap: () async {
+                print('Link clicked');
+                if (!await launch(_mainUrl)) {
+                  throw Exception('Could not launch this URL');
+                 }
                 },
                 child: Column(children: [
                   Text('Find us on'),
-                  Text('https://rhea_yang_projects.com'),
-                ]),
+                  Text(_mainUrl),
+                ]
+                ),
               ),
             ],
           ),
@@ -119,4 +125,3 @@ class LoginPage extends StatelessWidget {
       ),
     );
   }
-}
