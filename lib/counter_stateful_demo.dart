@@ -1,16 +1,12 @@
 import 'package:flutter/material.dart';
 
 class CounterStateful extends StatefulWidget {
-  Color buttonColor;
+  final Color buttonColor;
 
-  CounterStateful({Key? key, required this.buttonColor}) : super(key: key);
-
+  const CounterStateful({super.key, required this.buttonColor});
   @override
   State<CounterStateful> createState() {
-    State<CounterStateful> stateClassAssociatedWithThisWidget =
-        _CounterStatefulState();
-
-    return stateClassAssociatedWithThisWidget;
+    return _CounterStatefulState();
   }
 }
 
@@ -23,18 +19,16 @@ class _CounterStatefulState extends State<CounterStateful> {
         counter++;
       });
     }
-    print(counter);
+    debugPrint(counter.toString());
   }
 
   @override
   void initState() {
-    // TODO: implement initState
     super.initState();
   }
 
   @override
   void dispose() {
-    // TODO: implement dispose
     super.dispose();
   }
 

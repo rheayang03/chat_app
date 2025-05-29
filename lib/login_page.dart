@@ -1,32 +1,31 @@
 import 'package:flutter/material.dart';
-import 'package:chat_app/chat_page.dart';
-import 'package:chat_app/textfield_styles.dart';
+//import 'package:chat_app/chat_page.dart';
 import 'package:chat_app/login_text_field.dart';
 import 'package:chat_app/util/spaces.dart';
 import 'package:social_media_buttons/social_media_button.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 class LoginPage extends StatelessWidget {
-  LoginPage({Key? key}) : super(key: key);
+  LoginPage({super.key});
 
   final _formKey = GlobalKey<FormState>();
   final userNameController = TextEditingController();
   final passwordController = TextEditingController();
   final _mainUrl = 'https://github.com/rheayang03/chat_app/commits/main/';
 
-  void loginUser(context) {
+  void loginUser(BuildContext context) {
     if (_formKey.currentState != null && _formKey.currentState!.validate()) {
-      print(userNameController.text);
-      print(passwordController.text);
+      debugPrint(userNameController.text);
+      debugPrint(passwordController.text);
 
       Navigator.pushReplacementNamed(
         context,
         '/chat',
         arguments: userNameController.text,
       );
-      print('Login successful');
+      debugPrint('Login successful');
     } else {
-      print('Login failed');
+      debugPrint('Login failed');
     }
   }
 

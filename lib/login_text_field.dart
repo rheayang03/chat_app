@@ -8,12 +8,11 @@ class LoginTextField extends StatelessWidget {
   final bool hashAsterisk;
 
   const LoginTextField(
-      {Key? key,
+      {super.key,
       required this.controller,
       required this.hintText,
       this.validator,
-      this.hashAsterisk = false})
-      : super(key: key);
+      this.hashAsterisk = false});
 
   @override
   Widget build(BuildContext context) {
@@ -23,6 +22,7 @@ class LoginTextField extends StatelessWidget {
         if (validator != null) {
           return validator!(value);
         }
+        return null;
       },
       controller: controller,
       decoration: InputDecoration(
