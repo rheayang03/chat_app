@@ -1,7 +1,3 @@
-import 'package:chat_app/models/chat_message_entity.dart';
-import 'package:flutter/material.dart';
-import 'package:chat_app/widgets/picker_body.dart';
-
 class ChatInput extends StatefulWidget {
   final Function(ChatMessageEntity) onSubmit;
 

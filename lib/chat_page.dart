@@ -48,9 +48,7 @@ class _ChatPageState extends State<ChatPage> {
   }
   
    
-
-   final ImageRepository _imageRepo = ImageRepository();
-
+   
   @override
   void initState() {
     _loadInitialMessages();
@@ -82,14 +80,7 @@ class _ChatPageState extends State<ChatPage> {
 
       body: Column(
         children: [
-          FutureBuilder<List<PixelfordImage>>(
-              future: _imageRepo.getNetworkImages(),
-              builder: (BuildContext context,
-                  AsyncSnapshot<List<PixelfordImage>> snapshot) {
-                if (snapshot.hasData)
-                  return Image.network(snapshot.data![0].urlSmallSize);
-                return CircularProgressIndicator();
-              }),
+          
           Expanded(
            
 
