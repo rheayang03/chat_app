@@ -3,6 +3,7 @@ import 'package:chat_app/chat_page.dart';
 import 'package:chat_app/textfield_styles.dart';
 import 'package:chat_app/login_text_field.dart';
 import 'package:chat_app/util/spaces.dart';
+
 class LoginPage extends StatelessWidget {
   LoginPage({Key? key}) : super(key: key);
 
@@ -56,17 +57,16 @@ class LoginPage extends StatelessWidget {
                   color: Colors.blueGrey,
                 ),
               ),
-              Image.network(
-                'https://3009709.youcanlearnit.net/Alien_LIL_131338.png',
+              Image.asset(
+                'assets/chat_app_illustration.png',
                 height: 200,
               ),
-
               Form(
                 key: _formKey,
                 child: Column(
                   children: [
-                      LoginTextField(
-                    hintText: 'Enter your username',
+                    LoginTextField(
+                      hintText: 'Enter your username',
                       validator: (value) {
                         if (value != null &&
                             value.isNotEmpty &&
@@ -81,8 +81,9 @@ class LoginPage extends StatelessWidget {
                     ),
                     verticalSpacing(24),
                     LoginTextField(
-                    hashAsterisk: true,
-                    controller: passwordController, hintText: 'Enter your password',
+                      hashAsterisk: true,
+                      controller: passwordController,
+                      hintText: 'Enter your password',
                     ),
                   ],
                 ),
@@ -98,22 +99,18 @@ class LoginPage extends StatelessWidget {
                 ),
               ),
               GestureDetector(
-                onDoubleTap(){
-                print('Linked Clicked');
+                onDoubleTap: () {
+                  print('Linked Clicked');
                 },
-
-                child: Column(
-                  children: [
-                    Text('Find us on'),
-                    Text('https://rhea_yang_projects.com'),
-                  ]
-                ),
-                ),
+                child: Column(children: [
+                  Text('Find us on'),
+                  Text('https://rhea_yang_projects.com'),
+                ]),
+              ),
             ],
-
-           ),
           ),
         ),
-      );
+      ),
+    );
   }
 }
