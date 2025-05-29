@@ -7,7 +7,7 @@ import 'package:chat_app/chat_input.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
-class ChatPage extends StatefulWidget {
+lass ChatPage extends StatefulWidget {
    ChatPage({Key? key}) : super(key: key);
 
   @override
@@ -62,6 +62,7 @@ class _ChatPageState extends State<ChatPage> {
 
     final userName = ModalRoute.of(context)!.settings.arguments as String;
     return Scaffold(
+      backgroundColor: Colors.white,
       appBar: AppBar(
         backgroundColor: Colors.transparent,
         elevation: 0,

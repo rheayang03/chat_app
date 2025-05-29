@@ -1,9 +1,6 @@
  import 'package:chat_app/models/chat_message_entity.dart';
 import 'package:flutter/material.dart';
 
-
-
-
 class ChatBubble extends StatelessWidget {
 
   final ChatMessageEntity entity;
@@ -18,14 +15,14 @@ class ChatBubble extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    bool isAuthor = entity.author.username == "Elton Bernil";
     return Align(
       alignment: alignment,
       child: Container(
         constraints:
-         BoxConstraints(
-          maxWidth: MediaQuery.of(context).size.width * 0.5,
-        ),
+        BoxConstraints(maxWidth: MediaQuery.of(context).size.width * 0.6),
         padding: const EdgeInsets.all(24),
+
       child: Column(
           mainAxisSize: MainAxisSize.min,
           children: [
@@ -39,17 +36,25 @@ class ChatBubble extends StatelessWidget {
 
             
             if (entity.imageUrl != null)
-            Image.network(
-              '${entity.imageUrl}',
-              height: 200,
+               Container(
+                  height: 200,
+                  width: MediaQuery.of(context).size.width,
+                  decoration: BoxDecoration(
+                      image: DecorationImage(
+                          image: NetworkImage(entity.imageUrl!)),
+                      borderRadius: BorderRadius.circular(12)),
             ),
           ],
         ),
 
-        margin: const EdgeInsets.all(50),
+        margin: EdgeInsets.all(10),
         decoration: BoxDecoration(
-          color: Colors.grey,
-          borderRadius: BorderRadius.circular(12),
+          color: isAuthor ? Colors.blue : Colors.grey,
+          borderRadius: BorderRadius.only(
+            topLeft: Radius.circular(12),
+            topRight: Radius.circular(12),
+            bottomLeft: Radius.circular(12)
+          ),
         ),
       ),
     );
