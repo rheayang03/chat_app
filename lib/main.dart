@@ -8,7 +8,7 @@ import 'package:flutter/material.dart';
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await AuthService.init();
-  runApp(Provider(
+ runApp(ChangeNotifierProvider(
     create: (BuildContext context) => AuthService(),
     child: ChatApp(),
   ));
