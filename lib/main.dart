@@ -5,7 +5,9 @@ import 'package:chat_app/services/auth_service.dart';
 import 'package:chat_app/utils/brand_color.dart';
 import 'package:flutter/material.dart';
 
-void main() {
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await AuthService.init();
   runApp(Provider(
     create: (BuildContext context) => AuthService(),
     child: ChatApp(),
