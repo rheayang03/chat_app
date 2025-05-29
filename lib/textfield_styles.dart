@@ -1,10 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 
-
-class ThemeTextStyle{
-  static TextStyle loginTextFieldStyle = TextStyle(
-    color: Colors.blueGrey,
-    fontWeight: FontWeight.w500,
-    letterSpacing: 0.5,
+class ThemeTextStyle {
+  static TextStyle loginTextFieldStyle = GoogleFonts.lato(
+    textStyle: TextStyle(color: Colors.blueGrey),
   );
 }
