@@ -3,8 +3,10 @@ import 'package:chat_app/chat_bubble.dart';
 import 'package:chat_app/chat_input.dart';
 import 'package:flutter/material.dart';
 
+
 class ChatPage extends StatelessWidget {
-  ChatPage({Key? key}) : super(key: key);
+   ChatPage({Key? key}) : super(key: key);
+
 
   final List<ChatMessageEntity> _messages = [
     ChatMessageEntity(
@@ -13,7 +15,9 @@ class ChatPage extends StatelessWidget {
       id: '1',
       text: 'First Text',
       imageUrl: '', // Provide a valid image URL or leave empty
+
     ),
+    
     ChatMessageEntity(
       author: Author(username: 'Elton Bernil'),
       createdAt: DateTime.now().microsecondsSinceEpoch,
@@ -21,6 +25,7 @@ class ChatPage extends StatelessWidget {
       text: 'Second Text',
       imageUrl: 'https://3009709.youcanlearnit.net/Alien_LIL_131338.png',
     ),
+
     ChatMessageEntity(
       author: Author(username: 'Elli'),
       createdAt: DateTime.now().microsecondsSinceEpoch,
@@ -30,8 +35,12 @@ class ChatPage extends StatelessWidget {
     ),
   ];
 
+
   @override
   Widget build(BuildContext context) {
+
+
+
     final userName = ModalRoute.of(context)!.settings.arguments as String;
     return Scaffold(
       appBar: AppBar(
@@ -41,28 +50,34 @@ class ChatPage extends StatelessWidget {
         title: Text('Hii $userName!'),
         actions: [
           IconButton(
-              onPressed: () {
+              onPressed: (){
                 Navigator.pushReplacementNamed(context, '/');
                 print('Icon Pressed');
-              },
+              }, 
               icon: const Icon(Icons.logout)),
+
         ],
       ),
+
       body: Column(
         children: [
           Expanded(
-              child: ListView.builder(
-                  itemCount: _messages.length,
-                  itemBuilder: (context, index) {
-                    return ChatBubble(
-                      alignment:
-                          _messages[index].author.username == 'Elton Bernil'
-                              ? Alignment.centerRight
-                              : Alignment.centerLeft,
-                      entity: _messages[index],
-                    );
-                  })),
-          ChatInput(),
+           
+
+            child: ListView.builder(
+              itemCount: _messages.length,
+              itemBuilder: (context, index) {
+
+              return ChatBubble(
+              
+                alignment: _messages[index].author.username == 'Elton Bernil'
+                    ?Alignment.centerRight
+                    : Alignment.centerLeft,
+                    
+                entity: _messages[index],);
+            })),
+            
+        ChatInput(),
         ],
       ),
     );
