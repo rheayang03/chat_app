@@ -1,84 +1,44 @@
-class ChatInput extends StatefulWidget {
-  final Function(ChatMessageEntity) onSubmit;
+import 'package:flutter/material.dart';
 
-  ChatInput({Key? key, required this.onSubmit}) : super(key: key);
+import '../models/image_model.dart';
+import '../repo/image_repository.dart';
 
-  @override
-  State<ChatInput> createState() => _ChatInputState();
-}
+class NetworkImagePickerBody extends StatelessWidget {
+  final Function(String) onImageSelected;
+  NetworkImagePickerBody({
+    Key? key,
+  required this.onImageSelected
+  }) : super(key: key);
 
-class _ChatInputState extends State<ChatInput> {
-  final chatMessageController = TextEditingController();
-
-  void onSendButtonPressed() {
-    print('ChatMessage: ${chatMessageController.text}');
-    final newChatMessage = ChatMessageEntity(
-      text: chatMessageController.text,
-      id: '8',
-      createdAt: DateTime.now().millisecondsSinceEpoch,
-      author: Author(username: 'Elton Bernil'),
-      imageUrl: ''
-    );
-
-
-    widget.onSubmit(newChatMessage);
-    chatMessageController.clear();
-  }
-
+  final ImageRepository _imageRepo = ImageRepository();
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-                height: 100,
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    IconButton(
-                      onPressed: () {
-              //TODO: Open a bottom sheet that shows a grid of images
-                      showModalBottomSheet(
-                          context: context,
-                          builder: (BuildContext context) {
-                            return NetworkImagePickerBody();
-                          });
-                    }, 
-                      icon: Icon(Icons.add, 
-                      color: Colors.white,
-                      )
-                    ),
-                    
-                    Expanded(
-                      child: TextField(
-                        keyboardType: TextInputType.multiline,
-                        maxLines: 5,
-                        minLines: 1,
-                        controller: chatMessageController,
-                        textCapitalization: TextCapitalization.sentences,
-
-                      style: TextStyle(color: Colors.white),
-                      decoration: InputDecoration(
-                        hintText: "Type a message",
-                        hintStyle: TextStyle(color: Colors.blueGrey),
-                        border: InputBorder.none,
-                      ),
-                    )),
-
-                    IconButton(
-                      onPressed: onSendButtonPressed, 
-                      icon: Icon(
-                        Icons.send,
-                        color: Colors.white,
-                      ),
-                    ),
-                
-                    ],
-                ),
-          
-                decoration: BoxDecoration(
-                  color: Colors.black,
-                  borderRadius: BorderRadius.vertical(top: Radius.circular(20)),
-          
-                ),
-              );
+    return FutureBuilder<List<PixelfordImage>>(
+        future: _imageRepo.getNetworkImages(),
+        builder: (BuildContext context,
+            AsyncSnapshot<List<PixelfordImage>> snapshot) {
+          if (snapshot.hasData)
+            return GridView.builder(
+              itemCount: snapshot.data!.length,
+              itemBuilder: (context, index) {
+               return GestureDetector(
+                    onTap: () {
+                      onImageSelected(snapshot.data![index].urlFullSize);
+                    },
+                    child: Image.network(snapshot.data![index].urlFullSize));
+              },
+              gridDelegate: SliverGridDelegateWithMaxCrossAxisExtent(
+                crossAxisSpacing: 2,
+                mainAxisSpacing: 2,
+                maxCrossAxisExtent: MediaQuery.of(context).size.width * 0.5,
+              ),
+            );
+          //return Image.network(snapshot.data![0].urlFullSize);
+          return Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: Center(child: CircularProgressIndicator()),
+          );
+        });
   }
 }
