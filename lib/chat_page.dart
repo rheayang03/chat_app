@@ -1,97 +1,80 @@
-import 'dart:convert';
-
 import 'package:chat_app/models/chat_message_entity.dart';
-import 'package:chat_app/chat_bubble.dart';
-import 'package:chat_app/chat_input.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 
+class ChatInput extends StatefulWidget {
+  final Function(ChatMessageEntity) onSubmit;
 
-class ChatPage extends StatefulWidget {
-   ChatPage({Key? key}) : super(key: key);
+  ChatInput({Key? key, required this.onSubmit}) : super(key: key);
 
   @override
-  State<ChatPage> createState() => _ChatPageState();
+  State<ChatInput> createState() => _ChatInputState();
 }
 
-class _ChatPageState extends State<ChatPage> {
-  //Inialize the list of messages
-   List<ChatMessageEntity> _messages = [];
-  
+class _ChatInputState extends State<ChatInput> {
+  final chatMessageController = TextEditingController();
 
-  _loadInitialMessages() async{
-    final response = await rootBundle.loadString('assets/mock_messages.json');
-    
-    final List <dynamic> decodeList = jsonDecode(response) as List;
-    
-    final List<ChatMessageEntity> _chatMessages = decodeList.map((listItem) {
-      return ChatMessageEntity.fromJson(listItem);
-    }). toList();
-        
-    print(_chatMessages.length);
-    
-    //Finally, add the messages to the list
-    setState(() {
-      _messages = _chatMessages;
-    });
+  void onSendButtonPressed() {
+    print('ChatMessage: ${chatMessageController.text}');
+    final newChatMessage = ChatMessageEntity(
+      text: chatMessageController.text,
+      id: '8',
+      createdAt: DateTime.now().millisecondsSinceEpoch,
+      author: Author(username: 'Elton Bernil'),
+      imageUrl: ''
+    );
+
+
+    widget.onSubmit(newChatMessage);
+    chatMessageController.clear();
   }
 
-  onMessageSent(ChatMessageEntity entity) {
-      _messages.add(entity);
-      setState(() {});
-  }
-
-  @override
-  void initState() {
-    _loadInitialMessages();
-    super.initState();
-  }
 
   @override
   Widget build(BuildContext context) {
-
-
-    final userName = ModalRoute.of(context)!.settings.arguments as String;
-    return Scaffold(
-      appBar: AppBar(
-        backgroundColor: Colors.transparent,
-        elevation: 0,
-        centerTitle: true,
-        title: Text('Hii $userName!'),
-        actions: [
-          IconButton(
-              onPressed: (){
-                Navigator.pushReplacementNamed(context, '/');
-                print('Icon Pressed');
-              }, 
-              icon: const Icon(Icons.logout)),
-
-        ],
-      ),
-
-      body: Column(
-        children: [
-          Expanded(
-           
-
-            child: ListView.builder(
-              itemCount: _messages.length,
-              itemBuilder: (context, index) {
-
-              return ChatBubble(
-              
-                alignment: _messages[index].author.username == 'Elton Bernil'
-                    ?Alignment.centerRight
-                    : Alignment.centerLeft,
+    return Container(
+                height: 100,
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    IconButton(
+                      onPressed: () {}, 
+                      icon: Icon(Icons.add, 
+                      color: Colors.white,
+                      )
+                    ),
                     
-                entity: _messages[index],);
-            })),
-            
-        ChatInput(
-          onSubmit: onMessageSent,
-          ),
-        ],
-      ),
-    );
+                    Expanded(
+                      child: TextField(
+                        keyboardType: TextInputType.multiline,
+                        maxLines: 5,
+                        minLines: 1,
+                        controller: chatMessageController,
+                        textCapitalization: TextCapitalization.sentences,
+
+                      style: TextStyle(color: Colors.white),
+                      decoration: InputDecoration(
+                        hintText: "Type a message",
+                        hintStyle: TextStyle(color: Colors.blueGrey),
+                        border: InputBorder.none,
+                      ),
+                    )),
+
+                    IconButton(
+                      onPressed: onSendButtonPressed, 
+                      icon: Icon(
+                        Icons.send,
+                        color: Colors.white,
+                      ),
+                    ),
+                
+                    ],
+                ),
+          
+                decoration: BoxDecoration(
+                  color: Colors.black,
+                  borderRadius: BorderRadius.vertical(top: Radius.circular(20)),
+          
+                ),
+              );
   }
 }
