@@ -1,6 +1,6 @@
 import 'dart:convert';
 
-import 'package:chat_app/chat_message_entity.dart';
+import 'package:chat_app/models/chat_message_entity.dart';
 import 'package:chat_app/chat_bubble.dart';
 import 'package:chat_app/chat_input.dart';
 import 'package:flutter/material.dart';
@@ -36,6 +36,11 @@ class _ChatPageState extends State<ChatPage> {
     });
   }
 
+  onMessageSent(ChatMessageEntity entity) {
+      _messages.add(entity);
+      setState(() {});
+  }
+
   @override
   void initState() {
     _loadInitialMessages();
@@ -45,7 +50,6 @@ class _ChatPageState extends State<ChatPage> {
   @override
   Widget build(BuildContext context) {
 
-    _loadInitialMessages();
 
     final userName = ModalRoute.of(context)!.settings.arguments as String;
     return Scaffold(
@@ -83,7 +87,9 @@ class _ChatPageState extends State<ChatPage> {
                 entity: _messages[index],);
             })),
             
-        ChatInput(),
+        ChatInput(
+          onSubmit: onMessageSent,
+          ),
         ],
       ),
     );
