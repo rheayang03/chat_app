@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:chat_app/chat_page.dart';
 import 'package:chat_app/textfield_styles.dart';
 import 'package:chat_app/login_text_field.dart';
-
+import 'package:chat_app/util/spaces.dart';
 class LoginPage extends StatelessWidget {
   LoginPage({Key? key}) : super(key: key);
 
@@ -13,7 +13,6 @@ class LoginPage extends StatelessWidget {
       print(userNameController.text);
       print(passwordController.text);
 
-      print('Login successful');
       Navigator.pushReplacementNamed(
         context,
         '/chat',
@@ -61,6 +60,7 @@ class LoginPage extends StatelessWidget {
                 'https://3009709.youcanlearnit.net/Alien_LIL_131338.png',
                 height: 200,
               ),
+
               Form(
                 key: _formKey,
                 child: Column(
@@ -79,7 +79,7 @@ class LoginPage extends StatelessWidget {
                       },
                       controller: userNameController,
                     ),
-                    SizedBox(height: 24),
+                    verticalSpacing(24),
                     LoginTextField(
                     hashAsterisk: true,
                     controller: passwordController, hintText: 'Enter your password',
@@ -87,7 +87,7 @@ class LoginPage extends StatelessWidget {
                   ],
                 ),
               ),
-              SizedBox(height: 24),
+              verticalSpacing(24),
               ElevatedButton(
                 onPressed: () {
                   loginUser(context);
@@ -98,17 +98,22 @@ class LoginPage extends StatelessWidget {
                 ),
               ),
               GestureDetector(
+                onDoubleTap(){
+                print('Linked Clicked');
+                },
+
                 child: Column(
                   children: [
                     Text('Find us on'),
                     Text('https://rhea_yang_projects.com'),
-                  ],
+                  ]
                 ),
-              ),
+                ),
             ],
+
+           ),
           ),
         ),
-      ),
-    );
+      );
   }
 }

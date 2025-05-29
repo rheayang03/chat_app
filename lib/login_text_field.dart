@@ -1,7 +1,6 @@
 import 'chat_app/textfield_styles.dart';
 import 'package:flutter/material.dart';
 
-class LoginTextField extends StatelessWidget {
   final TextEditingController controller;
   final String hintText;
   final FormFieldValidator<String>? validator;
