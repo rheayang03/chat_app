@@ -1,3 +1,19 @@
 {
-    "cmake.ignoreCMakeListsMissing": true
+  "configurations": [
+    {
+      "name": "Win32",
+      "includePath": [
+        "${workspaceFolder}/**",
+        "${env:LOCALAPPDATA}/Pub/Cache/hosted/pub.dartlang.org/url_launcher_windows-*/windows/include",
+        "${env:FLUTTER_ROOT}/bin/cache/artifacts/engine/windows"
+      ],
+      "defines": [],
+      "windowsSdkVersion": "10.0.19041.0",
+      "compilerPath": "C:/Program Files/Microsoft Visual Studio/2022/Community/VC/Tools/MSVC/14.35.32215/bin/Hostx64/x64/cl.exe",
+      "intelliSenseMode": "windows-msvc-x64",
+      "cppStandard": "c++17",
+      "cStandard": "c11"
+    }
+  ],
+  "version": 4
 }
