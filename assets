@@ -1,0 +1,43 @@
+[
+  {
+    "author": {
+      "name": "John Doe"
+    },
+    "createdAt": "2023-10-01T12:00:00Z",
+    "id": "1",
+    "text": "Hi"
+  },
+
+  {
+    "author": {
+      "name": "Elton Bernil"
+    },
+    "createdAt": "2023-10-01T12:05:00Z",
+    "id": "2",
+    "text": "I'm good, thanks! How about you?"
+
+  },
+
+  {
+    "author": {
+      "name": "John Paul"
+    },
+    "createdAt": "2023-10-01T12:10:00Z",
+    "id": "3",
+    "text": "Just working on some code.",
+    "image": "https://www.shutterstock.com/image-photo/asian-software-developers-working-on-600nw-2470769829.jpg"
+    
+  },
+
+
+  {
+    "author": {
+      "name": "Chris Paul"
+    },
+    "createdAt": "2023-10-01T12:10:00Z",
+    "id": "3",
+    "text": "Just Doing some work.",
+    "image": "https://libertystreeteconomics.newyorkfed.org/wp-content/uploads/sites/2/2023/06/LSE_2023_working-remotely_emanuel_460.jpg"
+  }
+
+]
