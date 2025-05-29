@@ -5,7 +5,7 @@ import 'package:chat_app/login_text_field.dart';
 import 'package:flutter/material.dart';
 import 'package:social_media_buttons/social_media_button.dart';
 import 'package:url_launcher/url_launcher.dart';
-
+import 'package:provider/provider.dart';
 
 class LoginPage extends StatelessWidget {
    LoginPage({Key? key}) : super(key: key);
@@ -13,13 +13,13 @@ class LoginPage extends StatelessWidget {
 final _formKey = GlobalKey<FormState>();
 
   // Function to handle login
-void loginUser(context) {
-
+Future<void> loginUser(BuildContext context) async {
   if (_formKey.currentState != null && _formKey.currentState!.validate()) {
   
     print(userNameController.text);
     print(passwordController.text);
-  
+
+    await context.read<AuthService>().loginUser(userNameController.text);
     Navigator.pushReplacementNamed(
       context,
       '/chat',
@@ -34,7 +34,7 @@ void loginUser(context) {
 final userNameController = TextEditingController();
 final passwordController = TextEditingController();
 
-final _mainUrl = 'https://github.com/rheayang03/chat_app/commits/main/';
+final _mainUrl = 'https://github.com/callmeEltonBernil/chat_app/commits/main/';
 
 
   @override
@@ -120,8 +120,8 @@ final _mainUrl = 'https://github.com/rheayang03/chat_app/commits/main/';
              verticalSpacing(24),
 
             ElevatedButton(
-              onPressed: (){ 
-                loginUser(context);
+              onPressed: () async {
+                      await loginUser(context);
               },
 
               style: ElevatedButton.styleFrom(
@@ -160,10 +160,10 @@ final _mainUrl = 'https://github.com/rheayang03/chat_app/commits/main/';
                   SocialMediaButton.twitter(
                     size: 20,
                     color: Colors.blue,
-                      url: 'https://twitter.com/rheayang03',),
+                      url: 'https://twitter.com/callmeEltonBernil',),
 
                   SocialMediaButton.linkedin(
-                    url: 'https://linkedin.com/rheayang03',)
+                    url: 'https://linkedin.com/callmeEltonBernil',)
 
                   
                 ],

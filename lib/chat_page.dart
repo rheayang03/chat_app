@@ -7,6 +7,7 @@ import 'package:chat_app/chat_bubble.dart';
 import 'package:chat_app/chat_input.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:provider/provider.dart';
 
 class ChatPage extends StatefulWidget {
    ChatPage({Key? key}) : super(key: key);
@@ -72,6 +73,7 @@ class _ChatPageState extends State<ChatPage> {
         actions: [
           IconButton(
               onPressed: (){
+                context.read<AuthService>().logoutUser();
                 Navigator.pushReplacementNamed(context, '/');
                 print('Icon Pressed');
               }, 
@@ -92,7 +94,7 @@ class _ChatPageState extends State<ChatPage> {
 
               return ChatBubble(
                    alignment: _messages[index].author.username ==
-                                AuthService().getUserName()
+                                context.read<AuthService>().getUserName()
                             ? Alignment.centerRight
                             : Alignment.centerLeft,
                 

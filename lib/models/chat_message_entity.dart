@@ -1,6 +1,6 @@
 class ChatMessageEntity {
   String text;
-  String imageUrl;
+  String? imageUrl;
   String id;
   int createdAt;
   Author author;
@@ -9,8 +9,8 @@ class ChatMessageEntity {
     required this.text,
     required this.id,
     required this.createdAt,
+    this.imageUrl,
     required this.author,
-    required this.imageUrl,
 
   });
   
@@ -20,7 +20,7 @@ class ChatMessageEntity {
     id: json['id'] ?? '',
     createdAt: DateTime.tryParse(json['createdAt'] ?? '')?.millisecondsSinceEpoch ?? 0,
     author: Author.fromJson(json['author']),
-    imageUrl: json['image'] ?? '', // fallback to empty string if not present
+    imageUrl: json['image'], // fallback to empty string if not present
   );
 }
 

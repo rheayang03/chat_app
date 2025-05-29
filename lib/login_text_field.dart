@@ -7,29 +7,30 @@ class LoginTextField extends StatelessWidget {
   final FormFieldValidator<String>? validator;
   final bool hashAsterisk;
 
-  const LoginTextField(
-      {super.key,
-      required this.controller,
-      required this.hintText,
-      this.validator,
-      this.hashAsterisk = false});
+  const LoginTextField({Key? key, 
+        required this.controller, 
+        required this.hintText, 
+         this.validator, this.hashAsterisk = false}) 
+         : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return TextFormField(
       obscureText: hashAsterisk,
-      validator: (value) {
-        if (validator != null) {
-          return validator!(value);
-        }
-        return null;
-      },
-      controller: controller,
-      decoration: InputDecoration(
-        hintText: 'Add your username',
-        hintStyle: ThemeTextStyle.loginTextFieldStyle,
-        border: OutlineInputBorder(),
-      ),
-    );
-  }
+                    validator: (value) {
+                      if (validator != null) {
+                        return validator!(value);
+                      }
+                    
+                    },
+
+                    controller: controller,
+                    decoration: InputDecoration(
+                      hintText: '$hintText',
+                      hintStyle: ThemeTextStyle.loginTextFieldStyle,
+                     
+                      border: OutlineInputBorder(),
+                    ),
+                  );
+  } 
 }
